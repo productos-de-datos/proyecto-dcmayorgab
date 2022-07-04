@@ -41,6 +41,9 @@ def transform_data():
         df_energia = df_energia.melt(id_vars=['Fecha'], value_name='Precio', var_name='Hora')
         df_energia['Hora']=df_energia['Hora'].astype(int)
         df_energia['Fecha']=pd.to_datetime(df_energia['Fecha'], format='%Y-%m-%d')
+        df_energia=df_energia.sort_values(['Fecha','Hora']).fillna(method='ffill')
+        df_energia=df_energia.sort_values(['Fecha','Hora']).fillna(method='bfill')
+        df_energia=df_energia.drop_duplicates()
         df_energia.to_csv(os.path.join(path_raw,file.split('.')[0]+'.csv'),index=False)
 
 if __name__ == "__main__":

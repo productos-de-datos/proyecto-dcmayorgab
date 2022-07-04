@@ -1,3 +1,6 @@
+import os
+import pandas as pd
+
 def compute_monthly_prices():
     """Compute los precios promedios mensuales.
 
@@ -12,10 +15,16 @@ def compute_monthly_prices():
 
 
     """
-    raise NotImplementedError("Implementar esta función")
+    # raise NotImplementedError("Implementar esta función")
 
+    df=pd.read_csv(path)
+    df['Precio']=df['Precio'].astype('float')
+    df['Fecha']=pd.to_datetime(df['Fecha'], format='%Y-%m-%d')
+    df=df[['Fecha','Precio']].groupby(pd.Grouper(key='Fecha', freq='1M')).mean().reset_index()
+    df['Fecha']=df['Fecha'].apply(lambda dt: dt.replace(day=1))
+    df.to_csv(os.path.join(cwd, 'data_lake/business/precios-mensuales.csv') )
 
 if __name__ == "__main__":
     import doctest
-
+    compute_monthly_prices()
     doctest.testmod()

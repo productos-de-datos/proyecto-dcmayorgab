@@ -19,6 +19,7 @@ def transform_data():
     path_raw = os.path.join(cwd, 'data_lake/raw/') 
     list_files = os.listdir(path_landing)
 
+
     for file in list_files:
         
         
@@ -37,7 +38,7 @@ def transform_data():
             df_energia.columns = new_header
         
         df_energia=df_energia.iloc[:,:25]
-        #df_energia=df_energia[[i for i  in df_energia.columns if i not in ['Version']]
+        df_energia=df_energia.dropna()
         df_energia = df_energia.melt(id_vars=['Fecha'], value_name='Precio', var_name='Hora')
         df_energia['Hora']=df_energia['Hora'].astype(int)
         df_energia['Fecha']=pd.to_datetime(df_energia['Fecha'], format='%Y-%m-%d')

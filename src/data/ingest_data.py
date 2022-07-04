@@ -6,6 +6,8 @@ Módulo de ingestión de datos.
 import os
 import urllib.request
 
+
+
 def ingest_data():
     """Ingeste los datos externos a la capa landing del data lake.
 
@@ -32,18 +34,13 @@ def get_urls():
                 f.write(url)
                 f.write('\n')
 
-
-
-
 def get_files():
-    landing='./data_lake/landing/'
+    cwd=os.getcwd()
+    landing=os.path.join(cwd, 'data_lake/landing/') 
+    #landing='./data_lake/landing/'
     with open('./urls.txt','r') as f:
         for i in f.readlines():
-            urllib.request.urlretrieve(i,landing+ i.split('/')[-1].split('?')[0])
-
-
-
-
+            urllib.request.urlretrieve(i,os.path.join(landing,i.split('/')[-1].split('?')[0]))
 
 if __name__ == "__main__":
     import doctest

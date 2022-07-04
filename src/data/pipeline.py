@@ -83,7 +83,7 @@ class reports_prices(luigi.Task):
 if __name__ == "__main__":
     import doctest
 
-    luigi.run(["reports_prices"])
+    luigi.run(["reports_prices","--local-scheduler"])
     doctest.testmod()
 
 

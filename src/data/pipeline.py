@@ -17,6 +17,9 @@ import clean_data
 import compute_daily_prices
 import compute_monthly_prices
 import luigi
+import sys
+
+sys.path.append("src/data")
 
 class IngestData(luigi.Task):
 

@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-import numpy as np
+
 
 def make_features():
     """Prepara datos para pronóstico.
@@ -19,8 +19,8 @@ def make_features():
     #raise NotImplementedError("Implementar esta función")
     cwd = os.getcwd()
     path = os.path.join(cwd,"data_lake/business/precios-diarios.csv")
-    df = pd.read_csv(path)
-    df.to_csv(os.path.join(cwd, 'data_lake/business/features/precios_diarios.csv') , index=False )
+    df_precios = pd.read_csv(path)
+    df_precios.to_csv(os.path.join(cwd, 'data_lake/business/features/precios_diarios.csv') , index=False )
 
 
 

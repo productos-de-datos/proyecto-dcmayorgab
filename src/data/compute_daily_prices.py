@@ -16,13 +16,13 @@ def compute_daily_prices():
 
     """
     #raise NotImplementedError("Implementar esta función")
-    cwd=os.getcwd()
-    path=os.path.join(cwd, 'data_lake/cleansed/precios-horarios.csv') 
+
+    path='data_lake/cleansed/precios-horarios.csv'
     df=pd.read_csv(path)
     df['Precio']=df['Precio'].astype('float')
     df['Fecha']=pd.to_datetime(df['Fecha'], format='%Y-%m-%d')
     df=df[['Fecha','Precio']].groupby(by='Fecha',as_index=False).mean()
-    df.to_csv(os.path.join(cwd, 'data_lake/business/precios-diarios.csv')  , index=False)
+    df.to_csv( 'data_lake/business/precios-diarios.csv'  , index=False)
 
 if __name__ == "__main__":
     import doctest

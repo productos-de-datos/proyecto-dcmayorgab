@@ -8,13 +8,10 @@ archivo contiene tres columnas:
 * El pronóstico del precio promedio real.
 
 """
-
+import pickle
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
-from sklearn.neural_network import MLPRegressor
-import matplotlib.pyplot as plt
-import pickle
 
 
 def make_forecasts():
@@ -26,7 +23,6 @@ def make_forecasts():
     #cwd = os.getcwd()
     try:
         path = "data_lake/business/features/precios-diarios.csv"
-        path_model = "models/precios-diarios.pkl"
         path_forecasts = "data_lake/business/forecasts/precios-diarios.csv"
         df = pd.read_csv(path)
         data = list(df['Precio'])
@@ -39,12 +35,10 @@ def make_forecasts():
             np.array(data_d1d12).reshape(-1, 1))
         data_d1d12_scaled = [u[0] for u in data_d1d12_scaled]
         P = 7
-
         X = []
         for t in range(P - 1, len(data_d1d12_scaled) - 1):
             X.append([data_d1d12_scaled[t - n] for n in range(P)])
 
-        d = data_d1d12_scaled[P:]
         mlp = pickle.load(open('src/models/precios-diarios.pkl', 'rb'))
 
         y_d1d12_scaled_m2 = mlp.predict(X)

@@ -27,7 +27,7 @@ def transform_data():
         try :
             df_energia = pd.read_excel(path_landing + file,engine='openpyxl')
       
-        except :
+        except : # pylint: disable=W0702
             df_energia = pd.read_excel(path_landing + file )
         
         if  df_energia.columns[0]!='Fecha':

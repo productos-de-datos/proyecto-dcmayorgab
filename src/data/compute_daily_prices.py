@@ -18,11 +18,11 @@ def compute_daily_prices():
     #raise NotImplementedError("Implementar esta función")
 
     path='data_lake/cleansed/precios-horarios.csv'
-    df=pd.read_csv(path)
-    df['Precio']=df['Precio'].astype('float')
-    df['Fecha']=pd.to_datetime(df['Fecha'], format='%Y-%m-%d')
-    df=df[['Fecha','Precio']].groupby(by='Fecha',as_index=False).mean()
-    df.to_csv( 'data_lake/business/precios-diarios.csv'  , index=False)
+    dfe=pd.read_csv(path)
+    dfe['Precio']=dfe['Precio'].astype('float')
+    dfe['Fecha']=pd.to_datetime(dfe['Fecha'], format='%Y-%m-%d')
+    dfe=dfe[['Fecha','Precio']].groupby(by='Fecha',as_index=False).mean()
+    dfe.to_csv( 'data_lake/business/precios-diarios.csv'  , index=False)
 
 if __name__ == "__main__":
     import doctest

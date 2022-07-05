@@ -9,11 +9,6 @@ En la carpeta notebooks/ cree los notebooks de jupyter necesarios para
 analizar y determinar las variables explicativas del modelo.
 """
 
-
-
-
-
-
 #import os
 import pandas as pd
 
@@ -27,8 +22,8 @@ def make_features():
     try :
         dfp = pd.read_csv("data_lake/business/precios-diarios.csv")
 
-        dfp.to_csv('data_lake/business/features/precios-diarios.csv' , index=False )
-        
+        dfp.to_csv('data_lake/business/features/precios-diarios.csv',index=False)
+
         return dfp
 
     except : # pylint: disable=W0702

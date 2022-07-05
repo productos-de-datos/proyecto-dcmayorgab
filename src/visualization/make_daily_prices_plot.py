@@ -12,12 +12,15 @@ def make_daily_prices_plot():
 
     """
     # raise NotImplementedError("Implementar esta función")
-    cwd=os.getcwd()
-    path=os.path.join(cwd, 'data_lake/business/precios-diarios.csv')
-    img_path=os.path.join(cwd, 'data_lake/business/reports/figures/daily_prices.png')
-    df=pd.read_csv(path )
-    df.plot.line(x='Fecha', y='Precio')
-    plt.savefig(img_path)
+    try:
+        cwd=os.getcwd()
+        path=os.path.join(cwd, 'data_lake/business/precios-diarios.csv')
+        img_path=os.path.join(cwd, 'data_lake/business/reports/figures/daily_prices.png')
+        df=pd.read_csv(path )
+        df.plot.line(x='Fecha', y='Precio')
+        plt.savefig(img_path)
+    except: # pylint: disable=W0702
+        return None
 
 if __name__ == "__main__":
     import doctest

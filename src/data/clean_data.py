@@ -1,14 +1,14 @@
-"""Realice la limpieza y transformación de los archivos CSV.
+"""
+Realice la limpieza y transformación de los archivos CSV.
+Usando los archivos raw, cree el archivo precios-horarios.csv.
+Las columnas de este archivo son:
 
-    Usando los archivos raw, cree el archivo precios-horarios.csv.
-    Las columnas de este archivo son:
+* fecha: fecha en formato YYYY-MM-DD
+* hora: hora en formato HH
+* precio: precio de la electricidad en la bolsa nacional
 
-    * fecha: fecha en formato YYYY-MM-DD
-    * hora: hora en formato HH
-    * precio: precio de la electricidad en la bolsa nacional
-
-    Este archivo contiene toda la información del 1997 a 2021.
-    """
+Este archivo contiene toda la información del 1997 a 2021.
+"""
 
 import os
 import pandas as pd
@@ -25,20 +25,18 @@ def clean_data():
     path_raw =  'data_lake/raw/'
     path_cleaned= 'data_lake/cleansed/'
     list_files = [ 'data_lake/raw/'+i  for i in os.listdir(path_raw)]
-
     lst_df = []
-       
+
     for path in list_files:
 
         dfp = pd.read_csv(path)
         lst_df.append(dfp)
-            
         dfp = pd.concat(lst_df)
         dfp.to_csv(path_cleaned+'precios-horarios.csv',index=False)
 
 # Tests
 def test_file():
-    
+    """Test para revisar la creacion del archivo"""
     assert os.path.isfile('data_lake/cleansed/precios-horarios.csv') is True
 
 if __name__ == "__main__":

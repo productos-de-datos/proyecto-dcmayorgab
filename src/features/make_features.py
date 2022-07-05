@@ -24,11 +24,12 @@ def make_features():
     Debido a que es una serie de tiempo no es necesario crear mas caracteristicas
 
     """
+    try :
+        dfp = pd.read_csv("data_lake/business/precios-diarios.csv")
 
-    dfp = pd.read_csv("data_lake/business/precios-diarios.csv")
-
-    dfp.to_csv('data_lake/business/features/precios-diarios.csv' , index=False )
-
+        dfp.to_csv('data_lake/business/features/precios-diarios.csv' , index=False )
+    except :
+        return False
 
 
 

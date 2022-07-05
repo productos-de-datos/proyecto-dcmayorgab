@@ -22,7 +22,7 @@ def compute_daily_prices():
     df['Precio']=df['Precio'].astype('float')
     df['Fecha']=pd.to_datetime(df['Fecha'], format='%Y-%m-%d')
     df=df[['Fecha','Precio']].groupby(by='Fecha',as_index=False).mean()
-    df.to_csv(os.path.join(cwd, 'data_lake/business/precios-diarios.csv') )
+    df.to_csv(os.path.join(cwd, 'data_lake/business/precios-diarios.csv')  , index=False)
 
 if __name__ == "__main__":
     import doctest

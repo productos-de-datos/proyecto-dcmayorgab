@@ -27,8 +27,8 @@ def make_features():
     #raise NotImplementedError("Implementar esta función")
     cwd = os.getcwd()
     path = os.path.join(cwd,"data_lake/business/precios-diarios.csv")
-    df_precios = pd.read_csv(path)
-    df_precios.to_csv(os.path.join(cwd, 'data_lake/business/features/precios_diarios.csv') , index=False )
+    dfp = pd.read_csv(path)
+    dfp.to_csv(os.path.join(cwd, 'data_lake/business/features/precios_diarios.csv') , index=False )
 
 
 

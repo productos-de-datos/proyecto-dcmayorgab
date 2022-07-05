@@ -1,3 +1,7 @@
+import os
+import pandas as pd
+import numpy as np
+
 def make_features():
     """Prepara datos para pronóstico.
 
@@ -12,10 +16,18 @@ def make_features():
     analizar y determinar las variables explicativas del modelo.
 
     """
-    raise NotImplementedError("Implementar esta función")
+    #raise NotImplementedError("Implementar esta función")
+    cwd = os.getcwd()
+    path = os.path.join(cwd,"data_lake/business/precios-diarios.csv")
+    df = pd.read_csv(path)
+    df.to_csv(os.path.join(cwd, 'data_lake/business/features/precios-diarios.csv') , index=False )
+
+
+
+
 
 
 if __name__ == "__main__":
     import doctest
-
+    make_features()
     doctest.testmod()

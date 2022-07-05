@@ -17,7 +17,6 @@ def create_data_lake():
     _=[os.mkdir(os.path.join("data_lake/business/", c))
      for c in carpetas_business]
     os.mkdir("./data_lake/business/reports/figures")
-    return None
     #raise NotImplementedError("Implementar esta función")
 
 

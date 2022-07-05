@@ -29,7 +29,7 @@ def make_features():
 
         dfp.to_csv('data_lake/business/features/precios-diarios.csv' , index=False )
     except :
-        return False
+        return None
 
 
 

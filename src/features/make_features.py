@@ -27,21 +27,11 @@ def make_features():
     #raise NotImplementedError("Implementar esta función")
     #cwd = os.getcwd()
     #path = os.path.join(cwd,"data_lake/business/precios-diarios.csv")
-    #dfp = pd.read_csv("data_lake/business/precios-diarios.csv")
+    dfp = pd.read_csv("data_lake/business/precios-diarios.csv")
     #dfp.to_csv(os.path.join(cwd, 'data_lake/business/features/precios_diarios.csv') , index=False )
-    #dfp.to_csv('data_lake/business/features/precios-diarios.csv' , index=False )
+    dfp.to_csv('data_lake/business/features/precios-diarios.csv' , index=False )
 
-    import pandas as pd
 
-    datos_precios_diarios = pd.read_csv(
-        "data_lake/business/precios-diarios.csv", index_col=0
-    )
-
-    datos_precios_diarios.to_csv(
-        "data_lake/business/features/precios_diarios.csv",
-        encoding="utf-8",
-        index=False,
-    )
 
 
 

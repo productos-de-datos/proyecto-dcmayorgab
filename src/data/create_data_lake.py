@@ -1,4 +1,4 @@
-import os
+
 
 def create_data_lake():
     """Cree el data lake con sus capas.
@@ -24,17 +24,30 @@ def create_data_lake():
 
     """
     # raise NotImplementedError("Implementar esta función")
-    cwd = os.getcwd()
-    os.mkdir(os.path.join(cwd, 'data_lake'))
-    os.mkdir(os.path.join(cwd,'data_lake/landing'))
-    os.mkdir(os.path.join(cwd,'data_lake/raw'))
-    os.mkdir(os.path.join(cwd,'data_lake/cleansed'))
-    os.mkdir(os.path.join(cwd,'data_lake/business'))
-    os.mkdir(os.path.join(cwd,'data_lake/business/reports'))
-    os.mkdir(os.path.join(cwd,'data_lake/business/reports/figures'))
-    os.mkdir(os.path.join(cwd,'data_lake/business/features'))
-    os.mkdir(os.path.join(cwd,'data_lake/business/forecasts'))
-    
+
+    import os
+
+    os.mkdir("data_lake")
+
+    directory = [
+        "landing",
+        "raw",
+        "cleansed",
+        "business",
+    ]
+
+    for folder in directory:
+        os.mkdir(os.path.join("./data_lake/", folder))
+
+    dir_business = [
+        "business/reports",
+        "business/reports/figures",
+        "business/features",
+        "business/forecasts",
+    ]
+
+    for folder in dir_business:
+        os.mkdir(os.path.join("./data_lake/", folder))
 
 if __name__ == "__main__":
     import doctest

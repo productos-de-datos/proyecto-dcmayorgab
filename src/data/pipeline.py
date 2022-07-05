@@ -19,7 +19,7 @@ import luigi
 
 # sys.path.append("src/data")
 
-class Ingest_Data(luigi.Task):
+class IngestData(luigi.Task):
     """Tarea de ingesta"""
     def output(self):
         return luigi.LocalTarget('ingest.txt')
@@ -32,17 +32,17 @@ class Ingest_Data(luigi.Task):
 class TransformData(luigi.Task):
     """Tarea de transformar"""
     def requires(self):
-        return Ingest_Data()
+        return IngestData()
 
     def output(self):
         return luigi.LocalTarget("TransformData.txt")
 
     def run(self):
-        with self.output().open("w") as outfile:
+        with self.output().open("w"):
             transform_data.transform_data()
 
 
-class cleanData(luigi.Task):
+class CleanData(luigi.Task):
     """Tarea de limpiar"""
     def requires(self):
         return TransformData()
@@ -51,43 +51,43 @@ class cleanData(luigi.Task):
         return luigi.LocalTarget("cleanData.txt")
 
     def run(self):
-        with self.output().open("w") as outfile:
+        with self.output().open("w"):
             clean_data.clean_data()
 
 
-class dailyReports(luigi.Task):
+class DailyReports(luigi.Task):
     """Tarea de calculo diario"""
     def requires(self):
-        return cleanData()
+        return CleanData()
 
     def output(self):
         return luigi.LocalTarget("data_lake/business/precios-dias.csv")
 
     def run(self):
-        with self.output().open("w") as outfile:
+        with self.output().open("w"):
             compute_daily_prices.compute_daily_prices()
 
 
-class monthlyReports(luigi.Task):
+class MonthlyReports(luigi.Task):
     """Tarea de calculo mensual"""
     def requires(self):
-        return cleanData()
+        return CleanData()
 
     def output(self):
         return luigi.LocalTarget("data_lake/business/precios-mes.csv")
 
     def run(self):
-        with self.output().open("w") as outfile:
+        with self.output().open("w"):
             compute_monthly_prices.compute_monthly_prices()
 
 
-class reports_prices(luigi.Task):
+class ReportPrices(luigi.Task):
     """Tarea de reportes"""
     def requires(self):
-        return [dailyReports(), monthlyReports()]
+        return [DailyReports(), MonthlyReports()]
 
 
 if __name__ == "__main__":
     import doctest
-    luigi.run(["reports_prices", "--local-scheduler"])
+    luigi.run(["ReportPrices", "--local-scheduler"])
     doctest.testmod()

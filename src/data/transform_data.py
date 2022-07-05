@@ -14,9 +14,9 @@ def transform_data():
     """
     #raise NotImplementedError("Implementar esta función")
 
-    cwd=os.getcwd()
-    path_landing = os.path.join(cwd, 'data_lake/landing/') 
-    path_raw = os.path.join(cwd, 'data_lake/raw/') 
+    #cwd=os.getcwd()
+    path_landing = 'data_lake/landing/'
+    path_raw = 'data_lake/raw/'
     list_files = os.listdir(path_landing)
 
 
@@ -45,7 +45,7 @@ def transform_data():
         df_energia=df_energia.sort_values(['Fecha','Hora']).fillna(method='ffill')
         df_energia=df_energia.sort_values(['Fecha','Hora']).fillna(method='bfill')
         df_energia=df_energia.drop_duplicates()
-        df_energia.to_csv(os.path.join(path_raw,file.split('.')[0]+'.csv'),index=False)
+        df_energia.to_csv(path_raw+file.split('.')[0]+'.csv',index=False)
 
 if __name__ == "__main__":
     import doctest

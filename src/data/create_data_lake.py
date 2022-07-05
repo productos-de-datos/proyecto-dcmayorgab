@@ -13,8 +13,8 @@ def create_data_lake():
     os.mkdir("./data_lake")
     carpetas = ["landing", "raw", "cleansed", "business"]
     carpetas_business = ["reports", "features", "forecasts"]
-    [os.mkdir(os.path.join("data_lake/", c)) for c in carpetas]
-    [os.mkdir(os.path.join("data_lake/business/", c))
+    _=[os.mkdir(os.path.join("data_lake/", c)) for c in carpetas]
+    _=[os.mkdir(os.path.join("data_lake/business/", c))
      for c in carpetas_business]
     os.mkdir("./data_lake/business/reports/figures")
     return None

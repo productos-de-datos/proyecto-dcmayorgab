@@ -40,7 +40,7 @@ def make_features():
     datos_precios_diarios.to_csv(
         "data_lake/business/features/precios_diarios.csv",
         encoding="utf-8",
-        index=True,
+        index=False,
     )
 
 

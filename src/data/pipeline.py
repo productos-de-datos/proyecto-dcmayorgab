@@ -59,7 +59,7 @@ class dailyReports(luigi.Task):
         return cleanData()
 
     def output(self):
-        return luigi.LocalTarget("data_lake/business/precios-diarios.csv")
+        return luigi.LocalTarget("data_lake/business/precios-dias.csv")
 
     def run(self):
         with self.output().open("w") as outfile:

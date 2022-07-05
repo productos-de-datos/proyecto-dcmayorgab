@@ -41,7 +41,7 @@ def make_forecasts():
         X.append([data_d1d12_scaled[t - n] for n in range(P)])
 
     d = data_d1d12_scaled[P:]
-    mlp=pickle.load(open(path_model, 'rb'))
+    mlp=pickle.load(open('src/models/precios-diarios.pkl', 'rb'))
 
     y_d1d12_scaled_m2 = mlp.predict(X)
     

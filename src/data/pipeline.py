@@ -19,19 +19,18 @@ import luigi
 
 # sys.path.append("src/data")
 
-
-class IngestData(luigi.Task):
-
+class Ingest_Data(luigi.Task):
+    """Tarea de ingesta"""
     def output(self):
         return luigi.LocalTarget('ingest.txt')
 
     def run(self):
-        with self.output().open('w') as f:
+        with self.output().open('w'):
             ingest_data.ingest_data()
 
 
 class TransformData(luigi.Task):
-
+    """Tarea de transformar"""
     def requires(self):
         return IngestData()
 
@@ -44,6 +43,7 @@ class TransformData(luigi.Task):
 
 
 class cleanData(luigi.Task):
+    """Tarea de limpiar"""
     def requires(self):
         return TransformData()
 
@@ -56,6 +56,7 @@ class cleanData(luigi.Task):
 
 
 class dailyReports(luigi.Task):
+    """Tarea de calculo diario"""
     def requires(self):
         return cleanData()
 
@@ -68,6 +69,7 @@ class dailyReports(luigi.Task):
 
 
 class monthlyReports(luigi.Task):
+    """Tarea de calculo mensual"""
     def requires(self):
         return cleanData()
 
@@ -80,6 +82,7 @@ class monthlyReports(luigi.Task):
 
 
 class reports_prices(luigi.Task):
+    """Tarea de reportes"""
     def requires(self):
         return [dailyReports(), monthlyReports()]
 

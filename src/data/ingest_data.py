@@ -24,18 +24,20 @@ def get_urls():
     Crea una lista de urls
 
     """
-    with open('urls.txt', 'w') as f:
+    with open('urls.txt', 'w',encoding="utf-8") as file:
 
         for year in range(1995, 2022):
-            url = 'https://github.com/jdvelasq/datalabs/blob/master/datasets/precio_bolsa_nacional/xls/'
+            url_part1 = 'https://github.com/jdvelasq/datalabs/blob/master'
+            url_part2 = '/datasets/precio_bolsa_nacional/xls/'
+            url=url_part1+url_part2
             if year not in [2016, 2017]:
                 url = url + str(year)+'.xlsx?raw=true'
-                f.write(url)
-                f.write('\n')
+                file.write(url)
+                file.write('\n')
             else:
                 url = url + str(year)+'.xls?raw=true'
-                f.write(url)
-                f.write('\n')
+                file.write(url)
+                file.write('\n')
 
 
 def get_files():
@@ -46,8 +48,8 @@ def get_files():
     # cwd=os.getcwd()
     landing = 'data_lake/landing/'
     # landing='./data_lake/landing/'
-    with open('./urls.txt', 'r') as f:
-        for i in f.readlines():
+    with open('./urls.txt', 'r',encoding="utf-8") as file:
+        for i in file.readlines():
             urllib.request.urlretrieve(
                 i, landing+i.split('/')[-1].split('?')[0])
 

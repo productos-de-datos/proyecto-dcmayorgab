@@ -19,7 +19,7 @@ def compute_monthly_prices():
     """
     # raise NotImplementedError("Implementar esta función")
     cwd=os.getcwd()
-    path=os.path.join(cwd, 'data_lake/cleansed/precios-horarios.csv') 
+    path=os.path.join(cwd, 'data_lake/cleansed/precios-horarios.csv')
     dfe=pd.read_csv(path)
     dfe['Precio']=dfe['Precio'].astype('float')
     dfe['Fecha']=pd.to_datetime(dfe['Fecha'], format='%Y-%m-%d')

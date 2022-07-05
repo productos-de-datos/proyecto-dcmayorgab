@@ -24,10 +24,10 @@ def clean_data():
     """
     #raise NotImplementedError("Implementar esta función")
 
-    cwd=os.getcwd()
-    path_raw = os.path.join(cwd, 'data_lake/raw/') 
-    path_cleaned=os.path.join(cwd, 'data_lake/cleansed/') 
-    list_files = [os.path.join(cwd, 'data_lake/raw/'+i)  for i in os.listdir(path_raw)]
+    #cwd=os.getcwd()
+    path_raw =  'data_lake/raw/'
+    path_cleaned= 'data_lake/cleansed/'
+    list_files = [ 'data_lake/raw/'+i  for i in os.listdir(path_raw)]
 
     lst_df = []
        
@@ -37,7 +37,7 @@ def clean_data():
         lst_df.append(dfp)
             
         dfp = pd.concat(lst_df)
-        dfp.to_csv(os.path.join(path_cleaned,'precios-horarios.csv'),index=False)
+        dfp.to_csv(path_cleaned+'precios-horarios.csv',index=False)
 
     
 

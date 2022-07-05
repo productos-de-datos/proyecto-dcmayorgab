@@ -59,7 +59,7 @@ class dailyReports(luigi.Task):
         return cleanData()
 
     def output(self):
-        return luigi.LocalTarget("dailyReports.txt")
+        return luigi.LocalTarget("data_lake/business/precios-dia.csv")
 
     def run(self):
         with self.output().open("w") as outfile:
@@ -70,7 +70,7 @@ class monthlyReports(luigi.Task):
         return cleanData()
 
     def output(self):
-        return luigi.LocalTarget("monthlyReports.txt")
+        return luigi.LocalTarget("data_lake/business/precios-mes.csv")
 
     def run(self):
         with self.output().open("w") as outfile:

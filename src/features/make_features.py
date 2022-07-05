@@ -20,7 +20,7 @@ def make_features():
     cwd = os.getcwd()
     path = os.path.join(cwd,"data_lake/business/precios-diarios.csv")
     df = pd.read_csv(path)
-    df.to_csv(os.path.join(cwd, 'data_lake/business/features/precios-diarios.csv') , index=False )
+    df.to_csv(os.path.join(cwd, 'data_lake/business/features/precios_diarios.csv') , index=False )
 
 
 

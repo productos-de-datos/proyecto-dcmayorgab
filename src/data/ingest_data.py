@@ -20,6 +20,10 @@ def ingest_data():
 
 
 def get_urls():
+    """
+    Crea una lista de urls
+
+    """
     with open('urls.txt', 'w') as f:
 
         for year in range(1995, 2022):
@@ -35,6 +39,10 @@ def get_urls():
 
 
 def get_files():
+    """
+    Crea los archivos
+
+    """
     # cwd=os.getcwd()
     landing = 'data_lake/landing/'
     # landing='./data_lake/landing/'

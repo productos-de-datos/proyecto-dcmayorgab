@@ -4,8 +4,11 @@
 .PHONY: clean_data
 .PHONY: compute_daily_prices
 .PHONY: pipeline
+.PHONY: make_daily_prices_plot
+.PHONY: make_monthly_prices_plot
 .PHONY: make_features
 .PHONY: train_model
+.PHONY: make_forecasts
 
 create_data_lake:
 	python3 src/data/create_data_lake.py
@@ -29,6 +32,12 @@ pipeline:
 	rm -rf data_lake
 	python3 src/data/create_data_lake.py
 	python3 src/data/pipeline.py
+
+make_daily_prices_plot:
+	python3 src/visualization/make_daily_prices_plot.py
+
+make_monthly_prices_plot:
+	python3 src/visualization/make_monthly_prices_plot.py
 
 make_features:
 	python3 src/features/make_features.py

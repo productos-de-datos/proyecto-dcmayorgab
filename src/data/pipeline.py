@@ -32,7 +32,7 @@ class Ingest_Data(luigi.Task):
 class TransformData(luigi.Task):
     """Tarea de transformar"""
     def requires(self):
-        return IngestData()
+        return Ingest_Data()
 
     def output(self):
         return luigi.LocalTarget("TransformData.txt")

@@ -28,6 +28,9 @@ def make_features():
         dfp = pd.read_csv("data_lake/business/precios-diarios.csv")
 
         dfp.to_csv('data_lake/business/features/precios-diarios.csv' , index=False )
+        
+        return dfp
+
     except : # pylint: disable=W0702
         return None
 

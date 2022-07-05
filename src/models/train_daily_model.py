@@ -46,7 +46,7 @@ def train_daily_model():
         max_iter=100000,
     )
     mlp.fit(X[0:8675], data_d1d12_scaled[0:8675]) 
-    pickle.dump(mlp, open(path_model, 'wb'))
+    pickle.dump(mlp, open("src/models/precios-diarios.pkl", 'wb'))
 
 if __name__ == "__main__":
     import doctest

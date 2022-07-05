@@ -11,23 +11,21 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
-def make_daily_prices_plot():
+def make_monthly_prices_plot():
     """
     Crea un grafico de lines que representa los precios promedios diarios.
 
     """
     # raise NotImplementedError("Implementar esta función")
-    try:
-        cwd=os.getcwd()
-        path=os.path.join(cwd, 'data_lake/business/precios-diarios.csv')
-        img_path=os.path.join(cwd, 'data_lake/business/reports/figures/daily_prices.png')
-        df=pd.read_csv(path )
-        df.plot.line(x='Fecha', y='Precio')
-        plt.savefig(img_path)
-    except: # pylint: disable=W0702
-        return None
+    cwd=os.getcwd()
+    path=os.path.join(cwd, 'data_lake/business/precios-mensuales.csv')
+    img_path=os.path.join(cwd, 'data_lake/business/reports/figures/monthly_prices.png')
+    df=pd.read_csv(path )
+    df.plot.line(x='Fecha', y='Precio')
+    plt.locator_params(nbins=8)
+    plt.savefig(img_path)
 
 if __name__ == "__main__":
     import doctest
-    make_daily_prices_plot()
+    make_monthly_prices_plot()
     doctest.testmod()

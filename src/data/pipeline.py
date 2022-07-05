@@ -1,75 +1,76 @@
 import luigi
 from luigi import Task, LocalTarget
+import ingest_data
+import transform_data
+import clean_data
+import compute_daily_prices
+import compute_monthly_prices
 
-class ingestdata(Task):
 
+class ingest_data_pipeline(Task):
     def output(self):
-        return LocalTarget('data_lake/landing/archivo.txt')
+        return LocalTarget("data_lake/landing/result.txt")
 
     def run(self):
-        from ingest_data import ingest_data
         with self.output().open("w") as outfile:
-            ingest_data()
+            ingest_data.ingest_data()
 
-class transformdata(Task):
 
+class transform_data_pipeline(Task):
     def requires(self):
-        return ingestdata()
-    
+        return ingest_data_pipeline()
+
     def output(self):
-        return LocalTarget('data_lake/raw/archivo.txt')
+        return LocalTarget("data_lake/raw/result.txt")
 
     def run(self):
-        from transform_data import transform_data
         with self.output().open("w") as outfile:
-            transform_data()
+            transform_data.transform_data()
 
-class cleandata(Task):
-    
+
+class clean_data_pipeline(Task):
     def requires(self):
-        return transformdata()
-    
+        return transform_data_pipeline()
+
     def output(self):
-        return LocalTarget('data_lake/cleansed/archivo.txt')
+        return LocalTarget("data_lake/cleansed/results3.txt")
 
     def run(self):
-        from clean_data import clean_data
         with self.output().open("w") as outfile:
-            clean_data()
+            clean_data.clean_data()
 
-class computedailyprices(Task):
-    
+
+class daily_reports_pipeline(Task):
     def requires(self):
-        return cleandata()
-    
+        return clean_data_pipeline()
+
     def output(self):
-        return LocalTarget('data_lake/business/archivo.txt')
+        return LocalTarget("data_lake/business/precios-dia.csv")
 
     def run(self):
-        from compute_daily_prices import compute_daily_prices
         with self.output().open("w") as outfile:
-            compute_daily_prices()
+            compute_daily_prices.compute_daily_prices()
 
-class computemonthlyprices(Task):
-    
+
+class monthly_reports_pipeline(Task):
     def requires(self):
-        return computedailyprices()
-    
+        return clean_data_pipeline()
+
     def output(self):
-        return LocalTarget('data_lake/business/archivo1.txt')
+        return LocalTarget("data_lake/business/precios-mes.csv")
 
     def run(self):
-        from compute_monthly_prices import compute_monthly_prices
         with self.output().open("w") as outfile:
-            compute_monthly_prices()
+            compute_monthly_prices.compute_monthly_prices()
 
-if __name__ == "__main__":
-    luigi.run(["computemonthlyprices", "--local-scheduler"])
-    #raise NotImplementedError("Implementar esta función")
+
+class reports_prices(Task):
+    def requires(self):
+        return [daily_reports_pipeline(), monthly_reports_pipeline()]
+
 
 if __name__ == "__main__":
     import doctest
 
+    luigi.run(["reports_prices", "--local-scheduler"])
     doctest.testmod()
-
-

@@ -1,8 +1,4 @@
-import pandas as pd
-import os
-
-def clean_data():
-    """Realice la limpieza y transformación de los archivos CSV.
+"""Realice la limpieza y transformación de los archivos CSV.
 
     Usando los archivos data_lake/raw/*.csv, cree el archivo data_lake/cleansed/precios-horarios.csv.
     Las columnas de este archivo son:
@@ -13,6 +9,17 @@ def clean_data():
 
     Este archivo contiene toda la información del 1997 a 2021.
 
+
+    """
+
+
+import pandas as pd
+import os
+
+def clean_data():
+    
+    """
+    Formatea los archivos y los concatena
 
     """
     #raise NotImplementedError("Implementar esta función")

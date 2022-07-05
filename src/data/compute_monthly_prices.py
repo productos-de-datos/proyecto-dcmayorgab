@@ -23,7 +23,7 @@ def compute_monthly_prices():
     df['Fecha']=pd.to_datetime(df['Fecha'], format='%Y-%m-%d')
     df=df[['Fecha','Precio']].groupby(pd.Grouper(key='Fecha', freq='1M')).mean().reset_index()
     df['Fecha']=df['Fecha'].apply(lambda dt: dt.replace(day=1))
-    df.to_csv(os.path.join(cwd, 'data_lake/business/precios-mensuales.csv') )
+    df.to_csv(os.path.join(cwd, 'data_lake/business/precios-mensuales.csv') , index=False )
 
 if __name__ == "__main__":
     import doctest

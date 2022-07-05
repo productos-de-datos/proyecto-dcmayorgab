@@ -29,9 +29,6 @@ def make_features():
     except : # pylint: disable=W0702
         return None
 
-
-
-
 if __name__ == "__main__":
     import doctest
     make_features()

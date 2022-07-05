@@ -1,32 +1,33 @@
+"""Transforme los archivos xls a csv.
+
+Transforme los archivos data_lake/landing/*.xls a data_lake/raw/*.csv. Hay
+un archivo CSV por cada archivo XLS en la capa landing. Cada archivo CSV
+tiene como columnas la fecha en formato YYYY-MM-DD y las horas H00, ...,
+H23.
+
+"""
 
 import pandas as pd
 import os
 
 
 def transform_data():
-    """Transforme los archivos xls a csv.
-
-    Transforme los archivos data_lake/landing/*.xls a data_lake/raw/*.csv. Hay
-    un archivo CSV por cada archivo XLS en la capa landing. Cada archivo CSV
-    tiene como columnas la fecha en formato YYYY-MM-DD y las horas H00, ...,
-    H23.
+    """
+    Transforma los archivos xls a csv.
 
     """
     #raise NotImplementedError("Implementar esta función")
-
     #cwd=os.getcwd()
+
     path_landing = 'data_lake/landing/'
     path_raw = 'data_lake/raw/'
     list_files = os.listdir(path_landing)
 
-
     for file in list_files:
-        
         
         try :
             df_energia = pd.read_excel(path_landing + file,engine='openpyxl')
-    
-            
+      
         except :
             df_energia = pd.read_excel(path_landing + file )
         
@@ -50,5 +51,5 @@ def transform_data():
 if __name__ == "__main__":
     import doctest
     transform_data()
-
     doctest.testmod()
+    

@@ -9,7 +9,6 @@ Construya un pipeline de Luigi que:
 
 En luigi llame las funciones que ya creo.
 
-
 """
 import ingest_data
 import transform_data
@@ -17,7 +16,7 @@ import clean_data
 import compute_daily_prices
 import compute_monthly_prices
 import luigi
-import sys
+#import sys
 
 #sys.path.append("src/data")
 
@@ -29,7 +28,6 @@ class IngestData(luigi.Task):
     def run(self):
         with self.output().open('w') as f:
             ingest_data.ingest_data()
-        
         
 class TransformData(luigi.Task):
     

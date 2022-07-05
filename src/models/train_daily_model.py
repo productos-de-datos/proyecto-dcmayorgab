@@ -1,18 +1,19 @@
-import os
+"""Entrena el modelo de pronóstico de precios diarios.
+
+Con las features entrene el modelo de proóstico de precios diarios y
+salvelo en models/precios-diarios.pkl
+
+"""
+
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.neural_network import MLPRegressor
 import pickle
 
-
-
 def train_daily_model():
-    """Entrena el modelo de pronóstico de precios diarios.
-
-    Con las features entrene el modelo de proóstico de precios diarios y
-    salvelo en models/precios-diarios.pkl
-
+    """
+    Entrena el modelo de pronóstico de precios diarios.
 
     """
     # raise NotImplementedError("Implementar esta función")
@@ -20,7 +21,7 @@ def train_daily_model():
     #cwd = os.getcwd()
     try:
         path = "data_lake/business/features/precios-diarios.csv"
-        path_model = "models/precios-diarios.pkl"
+        #path_model = "models/precios-diarios.pkl"
         df = pd.read_csv(path)
         data=list(df['Precio'])
 
@@ -33,7 +34,7 @@ def train_daily_model():
         X = []
         for t in range(P - 1, len(data_d1d12_scaled) - 1):
             X.append([data_d1d12_scaled[t - n] for n in range(P)])
-        d = data_d1d12_scaled[P:]
+        #d = data_d1d12_scaled[P:]
         H = 5  # Se escoge arbitrariamente
 
         np.random.seed(123456)

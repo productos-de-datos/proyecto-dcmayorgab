@@ -14,7 +14,7 @@ analizar y determinar las variables explicativas del modelo.
 
 
 
-import os
+#import os
 import pandas as pd
 
 

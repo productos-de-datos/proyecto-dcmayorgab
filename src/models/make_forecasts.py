@@ -23,7 +23,7 @@ def make_forecasts():
     """
     # raise NotImplementedError("Implementar esta función")
     cwd = os.getcwd()
-    path = os.path.join(cwd,"data_lake/business/features/precios_diarios.csv")
+    path = os.path.join(cwd,"data_lake/business/features/precios-diarios.csv")
     path_model = os.path.join(cwd,"models/precios-diarios.pkl")
     path_forecasts = os.path.join(cwd,"data_lake/business/forecasts/precios-diarios.csv")
     df = pd.read_csv(path)

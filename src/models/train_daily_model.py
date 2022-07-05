@@ -18,7 +18,7 @@ def train_daily_model():
     # raise NotImplementedError("Implementar esta función")
    
     cwd = os.getcwd()
-    path = os.path.join(cwd,"data_lake/business/features/precios_diarios.csv")
+    path = os.path.join(cwd,"data_lake/business/features/precios-diarios.csv")
     path_model = os.path.join(cwd,"models/precios-diarios.pkl")
     df = pd.read_csv(path)
     data=list(df['Precio'])
